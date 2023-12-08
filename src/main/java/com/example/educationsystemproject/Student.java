@@ -31,7 +31,6 @@ public class Student {
         this.phone = phone;
     }
 
-
     public Integer getStudentId() {
         return studentId;
     }
