@@ -3,7 +3,7 @@ package com.example.educationsystemproject;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Student {
@@ -17,6 +17,20 @@ public class Student {
     private String city;
     private String postal;
     private String phone;
+
+    public Student() {
+    }
+
+    public Student(String firstName, String lastName, String email, String address, String city, String postal, String phone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+        this.city = city;
+        this.postal = postal;
+        this.phone = phone;
+    }
+
 
     public Integer getStudentId() {
         return studentId;
@@ -82,4 +96,6 @@ public class Student {
         this.phone = phone;
     }
 }
+
+
 

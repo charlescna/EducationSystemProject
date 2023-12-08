@@ -1,14 +1,6 @@
 package com.example.educationsystemproject;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,15 +11,11 @@ public class StudentController {
     private StudentRepository studentRepository;
 
     @PostMapping("/add")
-    public @ResponseBody String addStudent(@RequestBody Student student)
-
-     {
-
-        studentRepository.save(student);
-        return "Student Saved";
+    public @ResponseBody Student addStudent(@RequestBody Student student) {
+        return studentRepository.save(student);
     }
 
-    @GetMapping("/all")
+    @GetMapping("/list")
     public @ResponseBody Iterable<Student> getAllStudents() {
         return studentRepository.findAll();
     }
@@ -35,6 +23,16 @@ public class StudentController {
     @GetMapping("/view/{id}")
     public @ResponseBody Student getStudentById(@PathVariable Integer id) {
         return studentRepository.findById(id).orElse(null);
+    }
+
+    @PutMapping("/modify/{id}")
+    public @ResponseBody Student modifyStudent(@PathVariable Integer id, @RequestBody Student modifiedStudent) {
+        return modifiedStudent;
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteStudent(@PathVariable Integer id) {
+        return "Student Deleted";
     }
 }
 
